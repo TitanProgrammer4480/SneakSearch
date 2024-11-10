@@ -7,8 +7,16 @@ Home
 {% block content %}
 <h1>GPU Api</h1>
 <form method="post">
-    <input type="text" name="term" value={{ term }}></input>
-    <button type="submit">Submit</button>
+  <input type="text" name="term" value={{ term }}></input>
+  <button type="submit">Submit</button>
+  <div>
+    <input type="checkbox" id="google" name="google" value="google">
+    <label for="google"> Google</label><br>
+    <input type="checkbox" id="duckduckgo" name="duckduckgo" value="duckduckgo">
+    <label for="duckduckgo"> DuckDuckGo</label><br>
+    <input type="checkbox" id="brave" name="brave" value="brave">
+    <label for="brave"> Brave</label><br>
+  </div>
 </form>
 {% for i in web_res%}
 <div class="card">
