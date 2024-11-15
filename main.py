@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         term = request.form["term"]
-        g_box = request.form["google"]
+        g_box = request.form.get('google', "off")
         g_result = g_search(term, 10, "us")
         duck_result = duck_search(term, 10, "wt-wt")
         brave_result = brave_search(term)
