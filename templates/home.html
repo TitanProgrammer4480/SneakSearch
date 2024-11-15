@@ -10,14 +10,14 @@ Home
   <input type="text" name="term" value={{ term }}></input>
   <button type="submit">Submit</button>
   <div>
-    <input type="checkbox" id="google" name="google" value="google">
+    <input type="checkbox" id="google" name="google">
     <label for="google"> Google</label><br>
     <input type="checkbox" id="duckduckgo" name="duckduckgo" value="duckduckgo">
     <label for="duckduckgo"> DuckDuckGo</label><br>
     <input type="checkbox" id="brave" name="brave" value="brave">
     <label for="brave"> Brave</label><br>
   </div>
-  <p>{{ g_box}}</p>
+  <p>{{ g_box }}</p>
 </form>
 {% for i in web_res%}
 <div class="card">
