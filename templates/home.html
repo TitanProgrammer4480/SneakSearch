@@ -17,22 +17,23 @@ Home
     <input type="checkbox" id="brave" name="brave" value="brave">
     <label for="brave"> Brave</label><br>
   </div>
-  <p>{{ g_box }}</p>
 </form>
 {% for i in web_res%}
 <div class="card">
   <h2>{{i["search"]}}:</h2>
   {% for x in i["results"] %}
-    {% if x.url %}
-      <div>  
-        <h4><a href={{ x.url }}>{{ x.title }}</a></h4>
-        <p>{{ x.description }}</p>
-      </div>
-    {% else %}
-      <div>
-        <h4><a href={{ x.href }}>{{ x.title }}</a></h4>
-        <p>{{ x.body }}</p>
-      </div>
+    {% if x.status == "on" %}
+      {% if x.url %}
+        <div>  
+          <h4><a href={{ x.url }}>{{ x.title }}</a></h4>
+          <p>{{ x.description }}</p>
+        </div>
+      {% else %}
+        <div>
+          <h4><a href={{ x.href }}>{{ x.title }}</a></h4>
+          <p>{{ x.body }}</p>
+        </div>
+      {% endif %}
     {% endif %}
   {% endfor %}
 </div>
