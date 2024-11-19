@@ -30,7 +30,7 @@ def index():
             "status": b_box,
             "results": brave_result
         }]
-        return render_template("home.html", web_res=all_results, term=term)
+        return render_template("home.html", web_res=all_results, term=term, g_box=g_box)
     return render_template("home.html")
 
 
