@@ -5,47 +5,112 @@ Home
 {% endblock %}
 
 {% block content %}
-<h1>GPU Api</h1>
-<form method="post">
-  <input type="text" name="term" value={{ term }}></input>
-  <button type="submit">Submit</button>
-  <div>
-    <input type="checkbox" id="google" name="google">
-    <label for="google"> Google</label><br>
-    <input type="checkbox" id="duckduckgo" name="duckduckgo">
-    <label for="duckduckgo"> DuckDuckGo</label><br>
-    <input type="checkbox" id="brave" name="brave">
-    <label for="brave"> Brave</label><br>
+<header>
+  <div class="top-header">
+    <div class="top-gui">
+      <button>
+        Login
+      </button>
+    </div>
   </div>
-</form>
-{% for i in web_res %}
-<div class="card">
-  <h2>{{i["search"]}}:</h2>
-  {% if i.status != "off" %}
-    {% for x in i["results"] %}
-      {% if x.url %}
-        <div>  
-          <h4><a href={{ x.url }}>{{ x.title }}</a></h4>
-          <p>{{ x.description }}</p>
-        </div>
-      {% else %}
-        <div>
-          <h4><a href={{ x.href }}>{{ x.title }}</a></h4>
-          <p>{{ x.body }}</p>
-        </div>
-      {% endif %}  
+  <div class="bottom-header">
+    <p>Lesezeichen:</p>
+  </div>
+</header>
+<main>
+  <div class="search-gui">
+    <h1>GPU Api</h1>
+    <form method="post">
+      <input type="text" name="term" value={{ term }}></input>
+      <button type="submit">Submit</button>
+      <div>
+        <input type="checkbox" id="google" name="google">
+        <label for="google"> Google</label><br>
+        <input type="checkbox" id="duckduckgo" name="duckduckgo">
+        <label for="duckduckgo"> DuckDuckGo</label><br>
+        <input type="checkbox" id="brave" name="brave">
+        <label for="brave"> Brave</label><br>
+      </div>
+    </form>
+  </div>
+  <div class="search-res">
+    {% for i in web_res %}
+    <div class="card">
+      <h2>{{i["search"]}}:</h2>
+      {% if i.status != "off" %}
+        {% for x in i["results"] %}
+          {% if x.url %}
+            <div>  
+              <h4><a href={{ x.url }}>{{ x.title }}</a></h4>
+              <p>{{ x.description }}</p>
+            </div>
+          {% else %}
+            <div>
+              <h4><a href={{ x.href }}>{{ x.title }}</a></h4>
+              <p>{{ x.body }}</p>
+            </div>
+          {% endif %}  
+        {% endfor %}
+      {% endif %}
+    </div>
     {% endfor %}
-  {% endif %}
-</div>
-{% endfor %}
+  </div>
+</main>
 {% endblock %}
 
 {% block style %}
 body {
   width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main {
+  width: 100%;
+}
+
+.top-header {
+  width: 100%;
+  height: 65%;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.top-gui {
+  padding: 0 50px 0 0;
+}
+
+.bottom-header {
+  width: 100%;
+  height: 35%;
+  background-color: blue;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-gui {
+  width: 100%;
+  height: 300px;
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
