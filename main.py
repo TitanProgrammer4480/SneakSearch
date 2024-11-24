@@ -1,11 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 
 from functions.google import g_search
 from functions.duck import duck_search
 from functions.brave import brave_search
 
 app = Flask(__name__)
-
 
 @app.route('/', methods=["GET", "POST"])
 def index():
@@ -30,8 +29,21 @@ def index():
             "status": b_box,
             "results": brave_result
         }]
-        return render_template("home.html", web_res=all_results, term=term, g_box=g_box)
+        return render_template("home.html",
+                               web_res=all_results,
+                               term=term,
+                               g_box=g_box)
     return render_template("home.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        print(request.form["name"])
+        print(hash(request.form["name"].encode()))
+        print(request.form["password"])
+        print(hash(request.form["password"].encode()))
+    return render_template("login.html")
 
 
 if __name__ == '__main__':
