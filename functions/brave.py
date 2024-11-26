@@ -1,10 +1,12 @@
-import requests as r
+from requests_html import HTMLSession
 from bs4 import BeautifulSoup as bs
 
 
 def brave_search(s_term):
+  session = HTMLSession()
   s_results = []
-  results = r.get(f"https://search.brave.com/search?q={s_term}&offset=0")
+  results = session.get(f"https://search.brave.com/search?q={s_term}&offset=0")
+  results.html.render()
   soup = bs(results.text, 'html.parser')
   divs = soup.find_all("div", attrs={"data-type": "web"}, class_="snippet svelte-wmqx28")
   for i in divs:

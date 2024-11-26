@@ -1,10 +1,13 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, redirect, session
+from flask.helpers import url_for
 
 from functions.google import g_search
 from functions.duck import duck_search
 from functions.brave import brave_search
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 
 @app.route('/', methods=["GET", "POST"])
 def index():
@@ -40,10 +43,27 @@ def index():
 def login():
     if request.method == "POST":
         print(request.form["name"])
+        if request.form["name"] == "admin" and request.form[
+                "password"] == "admin":
+            session["username"] = request.form["name"]
+            return redirect(url_for("dashboard"))
         print(hash(request.form["name"].encode()))
         print(request.form["password"])
         print(hash(request.form["password"].encode()))
     return render_template("login.html")
+
+
+@app.route("/dashboard", methods=["GET"])
+def dashboard():
+    if "username" in session:
+        return render_template("dashboard.html")
+    return "you are not logged in"
+
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.pop('username', None)
+    return redirect(url_for("index"))
 
 
 if __name__ == '__main__':

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<header>
+</header>
+<main>
+  <p>Dashboard</p>
+  <button onclick="window.location='{{ url_for('logout') }}'">Logout</button>
+  </form>
+</main>
+{% endblock %}
+
+{% block style %}
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+{% endblock %}
