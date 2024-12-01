@@ -3,7 +3,7 @@ from flask.helpers import url_for
 
 from functions.google import g_search
 from functions.duck import duck_search
-from functions.brave import brave_search
+#from functions.brave import brave_search
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -52,6 +52,18 @@ def login():
         print(hash(request.form["password"].encode()))
     return render_template("login.html")
 
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        print(request.form["name"])
+        if request.form["name"] == "admin" and request.form[
+                "password"] == "admin":
+            session["username"] = request.form["name"]
+            return redirect(url_for("dashboard"))
+        print(hash(request.form["name"].encode()))
+        print(request.form["password"])
+        print(hash(request.form["password"].encode()))
+    return render_template("signup.html")
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
