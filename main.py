@@ -3,7 +3,7 @@ from flask.helpers import url_for
 
 from functions.google import g_search
 from functions.duck import duck_search
-#from functions.brave import brave_search
+from functions.brave import brave_search
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
