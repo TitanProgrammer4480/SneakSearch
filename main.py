@@ -15,11 +15,11 @@ def index():
         term = request.form["term"]
         g_box = request.form.get('google', "off")
         d_box = request.form.get('duckduckgo', "off")
-        #b_box = request.form.get('brave', "off")
-        b_box = {}
+        b_box = request.form.get('brave', "off")
         g_result = g_search(term, 10, "us")
         duck_result = duck_search(term, 10, "wt-wt")
-        brave_result = brave_search(term)
+        #brave_result = brave_search(term)
+        brave_result = {}
         all_results = [{
             "search": "Google",
             "status": g_box,
