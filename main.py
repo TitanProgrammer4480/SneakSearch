@@ -3,7 +3,7 @@ from flask.helpers import url_for
 
 from functions.google import g_search
 from functions.duck import duck_search
-from functions.brave import brave_search
+#from functions.brave import brave_search
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -15,7 +15,8 @@ def index():
         term = request.form["term"]
         g_box = request.form.get('google', "off")
         d_box = request.form.get('duckduckgo', "off")
-        b_box = request.form.get('brave', "off")
+        #b_box = request.form.get('brave', "off")
+        b_box = {}
         g_result = g_search(term, 10, "us")
         duck_result = duck_search(term, 10, "wt-wt")
         brave_result = brave_search(term)
