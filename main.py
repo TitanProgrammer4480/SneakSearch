@@ -1,13 +1,26 @@
-from flask import Flask, render_template, request, redirect, session
-from flask.helpers import url_for
+from flask import Flask, render_template, request, redirect, session, url_for
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 
 from functions.google import g_search
 from functions.duck import duck_search
 #from functions.brave import brave_search
 
+class Base(DeclarativeBase):
+  pass
+
+db = SQLAlchemy(model_class=Base)
+
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+db.init_app(app)
+
+class User(db.Model):
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(unique=True)
+    email: Mapped[str]
 
 @app.route('/', methods=["GET", "POST"])
 def index():
