@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block title %}
-Login
+Dashboard
 {% endblock %}
 
 {% block content %}
 <header>
 </header>
 <main>
-  <p>Dashboard</p>
+  <p>Dashboard: </p>
+  <p>{{ user }}</p>
+  <p>{{ user.username }}</p>
   <button onclick="window.location='{{ url_for('logout') }}'">Logout</button>
   </form>
 </main>
