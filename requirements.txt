@@ -1,4 +1,5 @@
 flask
+Flask-SQLAlchemy
 googlesearch-python
 bs4
 duckduckgo_search
