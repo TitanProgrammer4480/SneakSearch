@@ -10,9 +10,9 @@ Login
 <main>
   <p>Signup:</p>
   <form method="post" action={{ url_for("signup") }}>
-    <input type="text" name="username"></input><br>
-    <input type="email" name="email"></input><br>
-    <input type="password" name="password"></input><br>
+    <input type="text" name="username" placeholder="Your Username" required></input><br>
+    <input type="email" name="email" placeholder="Your Email address" required></input><br>
+    <input type="password" name="password" placeholder="Your Password" required></input><br>
     <button type="submit">Submit</button>
   </form>
 </main>

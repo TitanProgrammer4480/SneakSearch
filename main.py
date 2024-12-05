@@ -72,6 +72,7 @@ def login():
 def signup():
     if request.method == "POST":
         user = User(username=hash(request.form["username"].encode()), email=hash(request.form["email"].encode()), password=hash(request.form["password"].encode()))
+        
         db.session.add(user)
         db.session.commit()
         session["username"] = request.form["username"]
